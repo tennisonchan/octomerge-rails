@@ -18,6 +18,7 @@
 
 # Ignore .docker-env
 /.docker-env
+/.env
 
 # Ignore database.yml
 /config/database.yml
