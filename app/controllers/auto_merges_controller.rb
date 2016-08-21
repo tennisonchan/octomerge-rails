@@ -4,7 +4,7 @@ class AutoMergesController < ApplicationController
   def show
     auto_merge = AutoMerge.find_by(pr_number: params[:id])
 
-    render json: auto_merge
+    render json: auto_merge.to_json
   end
 
   def create
