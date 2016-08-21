@@ -29,6 +29,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'omniauth-github'
 gem 'dotenv-rails', :groups => [:development, :test]
+gem 'sidekiq'
+gem 'octokit', '~> 4.0'
+gem 'active_model_serializers', '~> 0.10.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
