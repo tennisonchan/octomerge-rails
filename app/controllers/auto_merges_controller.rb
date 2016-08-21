@@ -1,11 +1,31 @@
 class AutoMergesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
+  def show
+    auto_merge = AutoMerge.find_by(pr_number: params[:id])
+
+    render json: auto_merge
+  end
+
   def create
-    User.build_auto_merge()
+    auto_merge = current_user.auto_merges.build(auto_merge_params)
+
+    if auto_merge.save!
+      render json: auto_merge.to_json
+    end
+  end
+
+  def destroy
+    auto_merge = AutoMerge.find_by(pr_number: params[:id])
+
+    auto_merge.destroy
+
+    head :no_content
   end
 
   private
 
   def auto_merge_params
-    params
+    params.require(:pathData).permit(:owner, :repo, :pr_number)
   end
 end

@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   devise :omniauthable, :omniauth_providers => [:github]
 
+  delegate :pull_requests, :merge_pull_request, to: :client
+
+  has_many :auto_merges
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.email = auth.info.email
@@ -15,5 +19,9 @@ class User < ApplicationRecord
       user.token = auth.credentials.token
       user.save
     end
+  end
+
+  def client
+    @client ||= Octokit::Client.new(:access_token => token)
   end
 end
