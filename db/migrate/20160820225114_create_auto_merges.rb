@@ -6,10 +6,12 @@ class CreateAutoMerges < ActiveRecord::Migration[5.0]
       t.string :repo
       t.string :pr_number
       t.string :status
+      t.string :ref
 
       t.timestamps
     end
     add_index :auto_merges, :user_id
+    add_index :auto_merges, :pr_number
     add_index :auto_merges, :status
   end
 end
