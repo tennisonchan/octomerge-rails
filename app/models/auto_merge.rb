@@ -1,0 +1,2 @@
+class AutoMerge < ApplicationRecord
+end
