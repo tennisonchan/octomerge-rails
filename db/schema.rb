@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 20160820225114) do
     t.string   "pr_number"
     t.string   "status"
     t.string   "ref"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "job_id"
+    t.datetime "last_updated"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["pr_number"], name: "index_auto_merges_on_pr_number", using: :btree
     t.index ["status"], name: "index_auto_merges_on_status", using: :btree
     t.index ["user_id"], name: "index_auto_merges_on_user_id", using: :btree

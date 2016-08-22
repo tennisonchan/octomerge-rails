@@ -7,6 +7,8 @@ class CreateAutoMerges < ActiveRecord::Migration[5.0]
       t.string :pr_number
       t.string :status
       t.string :ref
+      t.string :job_id
+      t.datetime :last_updated
 
       t.timestamps
     end

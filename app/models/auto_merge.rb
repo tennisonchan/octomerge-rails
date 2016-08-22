@@ -1,9 +1,10 @@
-class AutoMerge < ApplicationRecord
-  after_commit on: [:create] do
-    delay.get_pr_details
-  end
+require 'sidekiq/api'
 
+class AutoMerge < ApplicationRecord
   belongs_to :user
+
+  after_commit :delay_get_pr_details, on: [:create]
+  before_destroy :clear_delay_job
 
   def owner_repo
     "#{owner}/#{repo}"
@@ -18,16 +19,25 @@ class AutoMerge < ApplicationRecord
   end
 
   def get_pr_details
-    self.ref = pull_request.head.ref
+    update(ref: pull_request.head.ref, last_updated: pull_request.updated_at)
+    delay_check_pr_status
+  end
 
-    save
+  def delay_get_pr_details
+    delay.get_pr_details
   end
 
   def delay_check_pr_status
-    CheckPrStatusJob.perform_later(self)
+    job_id = CheckPrStatusJob.set(wait: 3.mins).perform_later(self)
+
+    update(job_id: job_id, last_updated: pr_commit.statuses.first&.updated_at)
   end
 
   def merge_pull_request
     user.client.merge_pull_request(owner_repo, pr_number)
+  end
+
+  def clear_delay_job
+    Sidekiq::Queue.new.find_job(job_id).delete
   end
 end

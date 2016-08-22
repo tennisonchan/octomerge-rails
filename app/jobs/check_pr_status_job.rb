@@ -2,10 +2,12 @@ class CheckPrStatusJob < ApplicationJob
   queue_as :default
 
   def perform(auto_merge)
-    if auto_merge.pr_commit.state == 'success'
+    if auto_merge.pr_commit.state == 'success' || auto_merge.pr_commit.total_count == 0
       auto_merge.merge_pull_request
-    else
+    elsif 30.minutes.ago < auto_merge.last_updated
       auto_merge.delay_check_pr_status
+    else
+      auto_merge.update(status: 'closed')
     end
   end
 end
