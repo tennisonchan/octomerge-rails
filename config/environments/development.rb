@@ -54,4 +54,6 @@ Rails.application.configure do
 
   require 'sidekiq/testing'
   Sidekiq::Testing.inline!
+
+  Dotenv::Railtie.load
 end
