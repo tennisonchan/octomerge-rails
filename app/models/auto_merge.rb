@@ -38,6 +38,6 @@ class AutoMerge < ApplicationRecord
   end
 
   def clear_delay_job
-    Sidekiq::Queue.new.find_job(job_id).delete
+    Sidekiq::Queue.new.find_job(job_id).delete if job_id.present?
   end
 end
