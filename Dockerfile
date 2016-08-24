@@ -49,5 +49,6 @@ ADD vendor /home/app/vendor
 ADD db /home/app/db
 ADD config /home/app/config
 ADD docker/database.yml /home/app/config/database.yml
+ADD docker/redis.yml config/redis.yml
 # ADD docker/elasticsearch.yml /home/app/config/elasticsearch.yml
 ADD app /home/app/app
