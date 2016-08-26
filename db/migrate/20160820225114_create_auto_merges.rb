@@ -5,7 +5,7 @@ class CreateAutoMerges < ActiveRecord::Migration[5.0]
       t.string :owner
       t.string :repo
       t.string :pr_number
-      t.string :status
+      t.string :state
       t.string :ref
       t.string :job_id
       t.datetime :last_updated
@@ -14,6 +14,6 @@ class CreateAutoMerges < ActiveRecord::Migration[5.0]
     end
     add_index :auto_merges, :user_id
     add_index :auto_merges, :pr_number
-    add_index :auto_merges, :status
+    add_index :auto_merges, :state
   end
 end

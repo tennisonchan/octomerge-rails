@@ -7,7 +7,7 @@ class CheckPrStatusJob < ApplicationJob
     elsif 30.minutes.ago < auto_merge.last_updated
       auto_merge.delay_check_pr_status
     else
-      auto_merge.update(status: 'closed')
+      auto_merge.update(state: 'closed')
     end
   end
 end
