@@ -32,7 +32,7 @@ class AutoMerge < ApplicationRecord
 
     update(
       job_id: job.job_id,
-      target_urls: pr_commit.statuses.map(&:target_url),
+      statuses: pr_commit.statuses.collect(&:to_h),
       last_updated: pr_commit.statuses.first&.updated_at
     )
   end
