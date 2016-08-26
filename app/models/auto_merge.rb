@@ -30,7 +30,11 @@ class AutoMerge < ApplicationRecord
   def delay_check_pr_status
     job = CheckPrStatusJob.set(wait: 2.minutes).perform_later(self)
 
-    update(job_id: job.job_id, last_updated: pr_commit.statuses.first&.updated_at)
+    update(
+      job_id: job.job_id,
+      target_urls: pr_commit.statuses.map(&:target_url),
+      last_updated: pr_commit.statuses.first&.updated_at
+    )
   end
 
   def merge_pull_request
