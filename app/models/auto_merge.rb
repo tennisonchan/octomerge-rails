@@ -35,9 +35,10 @@ class AutoMerge < ApplicationRecord
     job = CheckPrStatusJob.set(wait: 2.minutes).perform_later(self)
 
     update(
+      last_updated: Time.now,
       job_id: job.job_id,
-      statuses: pr_commit.statuses.collect(&:to_h),
-      last_updated: Time.now
+      state: pr_commit.state,
+      statuses: pr_commit.statuses.collect(&:to_h)
     )
   end
 
