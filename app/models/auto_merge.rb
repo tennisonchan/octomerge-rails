@@ -23,7 +23,7 @@ class AutoMerge < ApplicationRecord
   end
 
   def get_pr_details
-    update(ref: pull_request.head.ref, last_updated: pull_request.updated_at)
+    update(ref: pull_request.head.ref)
     delay_check_pr_status
   end
 
@@ -37,7 +37,7 @@ class AutoMerge < ApplicationRecord
     update(
       job_id: job.job_id,
       statuses: pr_commit.statuses.collect(&:to_h),
-      last_updated: pr_commit.statuses.first&.updated_at
+      last_updated: Time.now
     )
   end
 
