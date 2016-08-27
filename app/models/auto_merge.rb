@@ -24,6 +24,7 @@ class AutoMerge < ApplicationRecord
 
   def get_pr_details
     update(ref: pull_request.head.ref)
+
     delay_check_pr_status
   end
 
@@ -35,7 +36,7 @@ class AutoMerge < ApplicationRecord
     job = CheckPrStatusJob.set(wait: 2.minutes).perform_later(self)
 
     update(
-      last_updated: Time.now,
+      last_updated: Time.zone.now,
       job_id: job.job_id,
       state: pr_commit.state,
       statuses: pr_commit.statuses.collect(&:to_h)
