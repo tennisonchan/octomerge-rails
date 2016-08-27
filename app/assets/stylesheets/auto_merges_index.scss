@@ -1,0 +1,16 @@
+@import "bootstrap";
+
+.state-success {
+  @extend .btn;
+  @extend .btn-success;
+}
+
+.state-failure {
+  @extend .btn;
+  @extend .btn-danger;
+}
+
+.state-pending {
+  @extend .btn;
+  @extend .btn-warning;
+}
