@@ -1,6 +1,10 @@
 require 'sidekiq/api'
 
 class AutoMerge < ApplicationRecord
+  extend Enumerize
+
+  enumerize :state, in: [:pending, :timeout, :success, :failure], default: :pending
+
   belongs_to :user
 
   after_commit :delay_get_pr_details, on: [:create]
