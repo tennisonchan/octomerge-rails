@@ -29,7 +29,8 @@ class AutoMergesController < ApplicationController
   def destroy
     auto_merge = current_user.auto_merges.find_by(pr_number: params[:id])
 
-    auto_merge.destroy!
+    auto_merge.sync_with_pr_commit
+    auto_merge.update(state: 'cancel')
 
     head :no_content
   end
