@@ -13,7 +13,7 @@ class AutoMergesController < ApplicationController
   end
 
   def show
-    auto_merge = current_user.auto_merges.find_by(pr_number: params[:id], state: 'pending')
+    auto_merge = AutoMerge.find_by(pr_number: params[:id], state: 'pending')
 
     render json: auto_merge
   end

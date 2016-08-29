@@ -36,7 +36,7 @@ class AutoMerge < ApplicationRecord
   end
 
   def delay_check_pr_status
-    job = CheckPrStatusJob.set(wait: 20.seconds).perform_later(self)
+    job = CheckPrStatusJob.set(wait: 2.minutes).perform_later(self)
 
     update(job_id: job.job_id)
   end
