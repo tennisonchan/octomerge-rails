@@ -47,7 +47,7 @@ class AutoMerge < ApplicationRecord
   end
 
   def success?
-    state.success? &&
+    state.success? ||
       pr_commit.total_count == 0
   end
 
