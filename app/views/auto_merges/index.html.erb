@@ -1,15 +1,29 @@
 <div class="container">
-  <table class="table table-hover">
-    <% @auto_merges.each do |auto_merge| %>
-      <tr>
-        <td>Last Updated: <%= auto_merge.last_updated %></td>
-        <td>branch: <%= auto_merge.ref %></td>
-        <td>
-          <% auto_merge.statuses&.each do |status| %>
-            <%= link_to status["context"], status["target_url"], class: "state-#{status['state']}", target: "_blank" %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <%- if @pending_auto_merges.present? %>
+    <table class="table table-hover">
+      <%- @pending_auto_merges.each do |auto_merge| %>
+        <tr>
+          <td>Last Updated: <%= auto_merge.last_updated %></td>
+          <td>branch: <%= auto_merge.ref %></td>
+          <td>
+            <% auto_merge.statuses&.each do |status| %>
+              <%= link_to status["context"], status["target_url"], class: "state-#{status['state']}", target: "_blank" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end -%>
+    </table>
+    <span>More</span>
+  <% else %>
+    <%- if @total_count == 0 %>
+      <div>
+        <h2>Welcome!</h2>
+        <span>When you hit the <strong>"Auto-merge on Build Succeeds"</strong> button, the status of the merge request will be updated to represent the impending merge. There is an option to cancel the automatic merge but only the user who initialized the auto-merge can cancel it.</span>
+      </div>
+    <% else %>
+      <div>
+        <h2>Snap! No more pending merges</h2>
+      </div>
+    <% end -%>
+  <% end -%>
 </div>

@@ -2,11 +2,12 @@ class AutoMergesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @auto_merges = current_user.auto_merges.all
+    @pending_auto_merges = current_user.auto_merges.where(state: 'pending')
+    @total_count = current_user.auto_merges.count
 
     respond_to do |format|
       format.json {
-        render json: @auto_merges, each_serializer: AutoMergeStatusSerializer
+        render json: @pending_auto_merges, each_serializer: AutoMergeStatusSerializer
       }
       format.html
     end
