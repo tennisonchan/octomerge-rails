@@ -1,0 +1,26 @@
+postgres:
+  image: 'postgres:9.5'
+  env_file: '.docker-env'
+  environment:
+    PGDATA: /var/lib/postgresql/data/pgdata
+  volumes:
+    - '/opt/octomerge/postgres:/var/lib/postgresql/data/pgdata'
+
+redis:
+  image: 'redis:3'
+  volumes:
+    - '/opt/octomerge/redis:/data'
+
+web:
+  ports:
+    - '80:80'
+    - '443:443'
+  image: tennisonchan/octomerge-rails:latest
+  env_file: '.docker-env'
+  links:
+    - 'postgres:postgres'
+    - "redis:redis"
+  volumes:
+    - '/opt/octomerge/app/log:/home/app/log'
+    - '/opt/octomerge/app/assets:/home/app/public/assets'
+    - '/opt/octomerge/app/tmp/cache:/home/app/tmp/cache'
