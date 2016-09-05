@@ -1,4 +1,10 @@
+@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "primer";
+
+body {
+  padding: 1.5rem;
+}
 
 .state-success {
   @extend .btn;
@@ -13,4 +19,9 @@
 .state-pending {
   @extend .btn;
   @extend .btn-warning;
+}
+
+.jumbotron {
+  border-radius: .3rem;
+  margin-bottom: 0;
 }

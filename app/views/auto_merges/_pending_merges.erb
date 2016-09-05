@@ -1,0 +1,17 @@
+<% content_for :frame_width, '300px' %>
+<% content_for :frame_height, '300px' %>
+<div class="container">
+  <table class="table table-hover">
+    <%- @pending_auto_merges.each do |auto_merge| %>
+      <tr>
+        <td>Last Updated: <%= auto_merge.last_updated %></td>
+        <td>branch: <%= auto_merge.ref %></td>
+        <td>
+          <% auto_merge.statuses&.each do |status| %>
+            <%= link_to status["context"], status["target_url"], class: "state-#{status['state']}", target: "_blank" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end -%>
+  </table>
+</div>
