@@ -20,7 +20,7 @@ class AutoMergesController < ApplicationController
   end
 
   def create
-    auto_merge = current_user.auto_merges.find_or_initialize_by(auto_merge_params.merge(state: 'pending'))
+    auto_merge = current_user.auto_merges.find_or_initialize_by(auto_merge_params.merge(state: 'pending', last_updated: Time.zone.now))
 
     if auto_merge.save!
       render json: auto_merge
@@ -39,6 +39,6 @@ class AutoMergesController < ApplicationController
   private
 
   def auto_merge_params
-    params.require(:pathData).permit(:owner, :repo, :pr_number)
+    params.permit(:owner, :repo, :pr_number, :commit_message, :commit_title)
   end
 end

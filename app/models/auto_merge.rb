@@ -22,7 +22,7 @@ class AutoMerge < ApplicationRecord
   end
 
   def merge_pull_request
-    user.client.merge_pull_request(owner_repo, pr_number)
+    user.client.merge_pull_request(owner_repo, pr_number, commit_message, { commit_title: commit_title })
   end
 
   def delay_get_pr_details
