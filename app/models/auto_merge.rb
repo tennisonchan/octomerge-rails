@@ -30,7 +30,10 @@ class AutoMerge < ApplicationRecord
   end
 
   def get_pr_details
-    update(ref: pull_request.head.ref)
+    update(
+      ref: pull_request.head.ref,
+      title: pull_request.title
+    )
 
     delay_check_pr_status
   end
