@@ -20,7 +20,7 @@ class AutoMergesController < ApplicationController
   end
 
   def create
-    auto_merge = current_user.auto_merges.build(auto_merge_params)
+    auto_merge = current_user.auto_merges.find_or_initialize_by(auto_merge_params.merge(state: 'pending'))
 
     if auto_merge.save!
       render json: auto_merge
@@ -28,7 +28,7 @@ class AutoMergesController < ApplicationController
   end
 
   def destroy
-    auto_merge = current_user.auto_merges.find_by(pr_number: params[:id])
+    auto_merge = current_user.auto_merges.find_by(pr_number: params[:id], state: 'pending')
 
     auto_merge.sync_with_pr_commit
     auto_merge.update(state: 'cancel')
