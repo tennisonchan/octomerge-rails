@@ -18,7 +18,7 @@ class AutoMerge < ApplicationRecord
   end
 
   def pr_commit
-    @pr_commit ||= user.client.combined_status(owner_repo, ref)
+    @pr_commit ||= user.client.combined_status(owner_repo, pull_request.head.ref)
   end
 
   def merge_pull_request
