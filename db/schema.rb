@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906070647) do
+ActiveRecord::Schema.define(version: 20160906205753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +24,12 @@ ActiveRecord::Schema.define(version: 20160906070647) do
     t.string   "ref"
     t.string   "job_id"
     t.datetime "last_updated"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.json     "statuses"
     t.string   "title"
+    t.string   "commit_message"
+    t.string   "commit_title"
     t.index ["owner"], name: "index_auto_merges_on_owner", using: :btree
     t.index ["pr_number"], name: "index_auto_merges_on_pr_number", using: :btree
     t.index ["repo"], name: "index_auto_merges_on_repo", using: :btree
