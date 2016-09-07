@@ -29,10 +29,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'omniauth-github'
-gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'sidekiq'
 gem 'octokit', '~> 4.0'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
