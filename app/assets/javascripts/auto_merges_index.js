@@ -6,6 +6,6 @@ window.onload = function() {
       message: 'popup-resize',
       width: dataset.width,
       height: dataset.height
-    }, 'chrome-extension://immoginlcccndojojknbkfkfdbjmecge');
+    }, 'chrome-extension://bcfdlpkdamkbcidkenogbahohlnonebo');
   }
 }
