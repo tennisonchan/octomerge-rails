@@ -2,10 +2,32 @@
 <% content_for :frame_height, '300px' %>
 <div class="container">
   <table class="table table-hover">
+    <tr>
+      <th>Last Tried</th>
+      <th>Pull Requests</th>
+      <th>CI</th>
+    </tr>
     <%- @pending_auto_merges.each do |auto_merge| %>
       <tr>
-        <td>Last Updated: <%= auto_merge.last_updated %></td>
-        <td>branch: <%= auto_merge.ref %></td>
+        <td class="last-updated">
+          <time datetime="<%= auto_merge.last_updated %>">
+            <%= time_ago_in_words(auto_merge.last_updated) %>
+          </time>
+        </td>
+        <td>
+          <div>
+            <%= link_to auto_merge.title, auto_merge.pr_url, target: '_blank' %>
+          </div>
+          <div>
+            <span id='auto_merge-ref'>
+              <%= auto_merge.ref %>
+            </span>
+            <a href='#'
+              id='ref-copy-button'
+              data-clipboard-target='#auto_merge-ref'
+              title='Click to copy'>copy</a>
+          </div>
+        </td>
         <td>
           <% auto_merge.statuses&.each do |status| %>
             <%= link_to status["context"], status["target_url"], class: "state-#{status['state']}", target: "_blank" %>

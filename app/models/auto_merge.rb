@@ -13,6 +13,10 @@ class AutoMerge < ApplicationRecord
     "#{owner}/#{repo}"
   end
 
+  def pr_url
+    "https://github.com/#{owner_repo}/pull/#{pr_number}"
+  end
+
   def pull_request
     @pull_request ||= user.client.pull_request(owner_repo, pr_number)
   end

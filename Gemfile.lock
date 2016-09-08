@@ -54,6 +54,7 @@ GEM
     byebug (9.0.5)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    clipboard-rails (1.5.10)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -226,6 +227,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   bootstrap-sass (~> 3.3.6)
   byebug
+  clipboard-rails
   coffee-rails (~> 4.2)
   devise
   enumerize

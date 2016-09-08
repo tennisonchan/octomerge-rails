@@ -34,6 +34,7 @@ gem 'sidekiq'
 gem 'octokit', '~> 4.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'figaro'
+gem 'clipboard-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
