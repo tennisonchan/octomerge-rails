@@ -3,5 +3,5 @@ Rails.application.routes.draw do
 
   resources :auto_merges, only: [:index, :show, :create, :destroy]
 
-  root to: 'home#index'
+  root to: 'auto_merges#index'
 end
