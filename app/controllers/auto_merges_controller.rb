@@ -3,11 +3,18 @@ class AutoMergesController < ApplicationController
 
   def index
     @pending_auto_merges = current_user.auto_merges.where(state: 'pending')
+    @closed_auto_merges = current_user.auto_merges.where.not(state: 'pending')
     @total_count = current_user.auto_merges.count
+
+    if params[:pending] == "1"
+      @auto_merges = @pending_auto_merges
+    elsif params[:closed] == "1"
+      @auto_merges = @closed_auto_merges
+    end
 
     respond_to do |format|
       format.json {
-        render json: @pending_auto_merges, each_serializer: AutoMergeStatusSerializer
+        render json: @auto_merges, each_serializer: AutoMergeStatusSerializer
       }
       format.html
     end

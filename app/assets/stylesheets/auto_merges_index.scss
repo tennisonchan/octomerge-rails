@@ -25,3 +25,118 @@ body {
   border-radius: .3rem;
   margin-bottom: 0;
 }
+
+.table-list-header {
+  position: relative;
+  margin-top: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px 3px 0 0;
+}
+
+.table-list-header::before {
+  display: table;
+  content: "";
+}
+
+.pl-3 {
+  padding-left: 12px !important;
+}
+
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.table-list-header .btn-link {
+  position: relative;
+  display: inline-block;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  font-weight: normal;
+}
+
+.btn-link {
+    display: inline-block;
+    padding: 0;
+    font-size: inherit;
+    color: #4078c0;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.table-list-header-toggle .btn-link .octicon {
+    margin-right: 2px;
+}
+
+.octicon {
+    vertical-align: text-bottom;
+}
+
+
+.Box-body {
+    padding: 12px 12px;
+}
+.border-left {
+    border-left: 1px #e5e5e5 solid !important;
+}
+.border-bottom {
+    border-bottom: 1px #e5e5e5 solid !important;
+}
+.border-right {
+    border-right: 1px #e5e5e5 solid !important;
+}
+ul, ol {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.Box-body-row {
+    padding: 12px 12px;
+    margin: 12px -12px -12px;
+    list-style-type: none;
+    border-top: 1px solid #eee;
+
+  &:first-of-type {
+      margin-top: -12px;
+      border-top: 0;
+  }
+}
+.p-0 {
+    padding: 0 !important;
+}
+.p-3 {
+    padding: 12px !important;
+}
+.lh-condensed {
+    line-height: 1.25 !important;
+}
+.d-table {
+    display: table !important;
+}
+.table-fixed {
+    table-layout: fixed !important;
+}
+
+.text-small {
+    font-size: 12px !important;
+}
+.mt-1 {
+    margin-top: 3px !important;
+}
+.text-gray {
+    color: #767676 !important;
+}
